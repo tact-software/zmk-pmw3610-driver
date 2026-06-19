@@ -173,6 +173,15 @@ config PMW3610_BALL_ACTION_TICK
     help
         Ball action tick value. Higher values require more movement to trigger a ball action.
 
+config PMW3610_INIT_POWER_UP_EXTRA_DELAY_MS
+    int "Extra delay (ms) after the power-up reset during init"
+    default 0
+    help
+        Additional delay added after the power-up reset step of the async init
+        sequence. Some boards fail to bring the sensor up on a cold/power reset
+        because init runs before the sensor power rail is stable; increasing this
+        (e.g. 300) gives the sensor time to settle. 0 keeps the original behavior.
+
 module = PMW3610
 module-str = PMW3610
 source "${ZEPHYR_BASE}/subsys/logging/Kconfig.template.log_config"
